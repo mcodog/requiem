@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\EmployeeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -36,4 +37,13 @@ Route::prefix('category')->group(function () {
     Route::get('/{id}/edit', [CategoryController::class, 'edit'])->name('category.edit');
     Route::post('/{id}/update', [CategoryController::class, 'update'])->name('category.update');
     Route::get('/{id}/delete', [CategoryController::class, 'delete'])->name('category.delete');
+});
+
+Route::prefix('employees')->group(function () {
+    Route::get('/', [EmployeeController::class, 'index'])->name('employees.index');
+    Route::get('/create', [EmployeeController::class, 'create'])->name('employees.create');
+    Route::post('/store', [EmployeeController::class, 'store'])->name('employees.store');
+    Route::get('/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
+    Route::post('/{id}/update', [EmployeeController::class, 'update'])->name('employees.update');
+    Route::get('/{id}/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
 });

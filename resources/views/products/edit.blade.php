@@ -3,13 +3,13 @@
 @section('content')
 <div class="container-lg m-5 p-3 d-flex justify-content-center flex-column align-items-md-center bg-light">
     <h4 class="p-2">You are in the Products Page</h4>
-    <form action="{{url('/products/store')}}" method="POST">
+    <form action="{{url('/products/'.$product->id.'/update')}}" method="POST">
         @csrf
         <label for="categoryId">Category</label>
             <label for="artists" class="form-label"></label>
                 <select class="form-select" aria-label="Default select example" name="categoryId">
                 </div>
-                <option selectedvalue="{{ $product->category_id }}">{{ $category->description }}</option>
+                <option value="{{ $category->id }}">{{ $category->description }}</option>
                 @foreach ($categories as $categories)
                     <option value="{{ $categories->id }}">{{ $categories->description }}</option>
                 @endforeach

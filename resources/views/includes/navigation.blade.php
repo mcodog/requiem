@@ -35,20 +35,11 @@
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Store Branches
+                Branches and Employees
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url('/category/') }}">See All</a></li>
-                <li><a class="dropdown-item" href="{{ url('/category/create') }}">Create New</a></li>
-            </ul>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Manufacturing Hubs
-            </a>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url('/category/') }}">See All</a></li>
-                <li><a class="dropdown-item" href="{{ url('/category/create') }}">Create New</a></li>
+                <li><a class="dropdown-item" href="{{ url('/category/') }}">Manage Branches</a></li>
+                <li><a class="dropdown-item" href="{{ url('/employees/') }}">Manage Employees</a></li>
             </ul>
             </li>
         </ul>

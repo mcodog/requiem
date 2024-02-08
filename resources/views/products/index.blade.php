@@ -7,8 +7,9 @@
     @foreach($products as $products)
     <tr>
         <td>{{$products->id}}</td>
-        <td>{{$products->description}}</td>
-        <td>{{$products->category_id}}</td>
+        <td>{{$products->product_name}}</td>
+        <td>{{$products->price}}</td>
+        <td>{{$products->category_desc}}</td>
         <td><a href="{{url('/products/'. $products->id.'/edit')}}"><i class="fas fa-edit"></i>Edit</a></td>
         <td><a href="{{url('/products/'. $products->id.'/delete')}}"><i class="fas fa-trash" style="color:red"></i>Delete</a></td>
     </tr>

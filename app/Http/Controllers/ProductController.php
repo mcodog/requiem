@@ -7,12 +7,19 @@ use View;
 use Redirect;
 use App\Models\Product;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::all();
+        // $products = Product::all();
+        $products = DB::table('product')
+            ->join('category', 'category.id', '=', 'product.category_id')
+            ->select('product.id', 'category.description as category_desc', 'product.description as product_name', 'product.price')
+            ->orderBy('product.id', 'ASC')
+            ->get();
+        // dd($products);
         return View::make('products.index', compact('products'));
     }
 
@@ -26,10 +33,10 @@ class ProductController extends Controller
     {
         $description = $request->description;
         $price = $request->price;
-        $categoryId = $request->categoryId;
+        $category_id = $request->categoryId;
         $product = new Product();
         $product->description = $description;
-        $product->category_id = $categoryId;
+        $product->category_id = $category_id;
         $product->price = $price;
         
         $product->save();
@@ -44,5 +51,24 @@ class ProductController extends Controller
         return View::make('products.edit', compact('product', 'category', 'categories'));
     }
 
+    public function update(Request $request, $id)
+    {
+        // dump($request->categoryId);
+        // dump($request->price);
+        // dump($request->description);
+        $product = Product::find($id);
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->category_id = $request->categoryId;
+
+        $product->save();
+        return Redirect::to('products');
+    }
+
+    public function delete($id)
+    {
+        Product::destroy($id);
+        return Redirect::to('products');
+    }
     
 }
