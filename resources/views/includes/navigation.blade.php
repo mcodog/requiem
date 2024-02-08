@@ -38,7 +38,7 @@
                 Branches and Employees
             </a>
             <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="{{ url('/category/') }}">Manage Branches</a></li>
+                <li><a class="dropdown-item" href="{{ url('/branch/') }}">Manage Branches</a></li>
                 <li><a class="dropdown-item" href="{{ url('/employees/') }}">Manage Employees</a></li>
             </ul>
             </li>

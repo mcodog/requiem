@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
@@ -46,4 +47,13 @@ Route::prefix('employees')->group(function () {
     Route::get('/{id}/edit', [EmployeeController::class, 'edit'])->name('employees.edit');
     Route::post('/{id}/update', [EmployeeController::class, 'update'])->name('employees.update');
     Route::get('/{id}/delete', [EmployeeController::class, 'delete'])->name('employees.delete');
+});
+
+Route::prefix('branch')->group(function () {
+    Route::get('/', [BranchController::class, 'index'])->name('branch.index');
+    Route::get('/create', [BranchController::class, 'create'])->name('branch.create');
+    Route::post('/store', [BranchController::class, 'store'])->name('branch.store');
+    Route::get('/{id}/edit', [BranchController::class, 'edit'])->name('branch.edit');
+    Route::post('/{id}/update', [BranchController::class, 'update'])->name('branch.update');
+    Route::get('/{id}/delete', [BranchController::class, 'delete'])->name('branch.delete');
 });
