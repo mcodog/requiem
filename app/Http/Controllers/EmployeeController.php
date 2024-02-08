@@ -49,4 +49,42 @@ class EmployeeController extends Controller
         $employee->save();
         return Redirect::to('employees');
     }
+
+    public function edit($id)
+    {
+        $employee = Employee::find($id);
+        $class = EmployeeClass::where('id', $employee->class_id)->first();
+        $status = EmployeeStatus::where('id', $employee->status_id)->first();
+        $classAll = EmployeeClass::all();
+        $statusAll = EmployeeStatus::all();
+        return View::make('employees.edit', compact('employee', 'class', 'status', 'classAll', 'statusAll'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        // dump($request->lname);
+        // dump($request->fname);
+        // dump($request->age);
+        // dump($request->address);
+        // dump($request->empClass);
+        // dump($request->empStatus);
+        // dump($request->empPosition);
+        $employee = Employee::find($id);
+        $employee->lname = $request->lname;
+        $employee->fname = $request->fname;
+        $employee->age = $request->age;
+        $employee->address = $request->address;
+        $employee->class_id = $request->empClass;
+        $employee->status_id = $request->empStatus;
+        $employee->position = $request->empPosition;
+
+        $employee->save();
+        return Redirect::to('employees');
+    }
+
+    public function delete($id)
+    {
+        Employee::destroy($id);
+        return Redirect::to('employees');
+    }
 }
