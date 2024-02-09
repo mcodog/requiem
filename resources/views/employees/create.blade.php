@@ -22,7 +22,6 @@
         <label for="empClass" class="form-label">Class</label>
             <select class="form-select" aria-label="Default select example" name="empClass">
             </div>
-            <option selected>Open this select menu</option>
             @foreach ($class as $class)
                 <option value="{{ $class->id }}">{{ $class->description }}</option>
             @endforeach
@@ -31,9 +30,17 @@
         <label for="empStatus" class="form-label">Status</label>
             <select class="form-select" aria-label="Default select example" name="empStatus">
             </div>
-            <option selected>Open this select menu</option>
             @foreach ($status as $status)
                 <option value="{{ $status->id }}">{{ $status->description }}</option>
+            @endforeach
+            </select> <br>
+
+        <label for="branch" class="form-label">Branch</label>
+            <select class="form-select" aria-label="Default select example" name="branch">
+            </div>
+            <option selected>-- See Branch List --</option>
+            @foreach ($branch as $branch)
+                <option value="{{ $branch->id }}">{{ $branch->location }}</option>
             @endforeach
             </select> <br>
 

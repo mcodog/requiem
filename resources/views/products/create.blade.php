@@ -6,7 +6,6 @@
     <form action="{{url('/products/store')}}" method="POST">
         @csrf
         <label for="categoryId">Category</label>
-        <div class="mb-3">
             <label for="artists" class="form-label">Pick An Category</label>
                 <select class="form-select" aria-label="Default select example" name="categoryId">
                 </div>

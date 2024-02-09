@@ -37,6 +37,20 @@
             @endforeach
             </select> <br>
 
+        <label for="branch" class="form-label">Branch</label>
+            <select class="form-select" aria-label="Default select example" name="branch">
+            </div>
+            @if (is_int($branch))
+                <option selected value="0">Not Assigned</option>
+            @else 
+                <option value="{{ $branch->id }}">{{ $branch->location }}</option>
+                <option value="0">Not Assigned</option>
+            @endif
+            @foreach ($branchAll as $branchAll)
+                <option value="{{ $branchAll->id }}">{{ $branchAll->location }}</option>
+            @endforeach
+            </select> <br>
+
         <input class="btn btn-primary" type="submit">
     </form>
 </div>

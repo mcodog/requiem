@@ -12,6 +12,12 @@
         <td>{{$employees->status}}</td>
         <td>{{$employees->class}}</td>
         <td>{{$employees->position}}</td>
+        @if ($employees->location == null)
+            <td>Not Assigned</td>
+        @else
+            <td>{{ $employees->location }}</td>
+        @endif
+        
         <td><a href="{{url('/employees/'. $employees->id.'/edit')}}"><i class="fas fa-edit"></i>Edit</a></td>
         <td><a href="{{url('/employees/'. $employees->id.'/delete')}}"><i class="fas fa-trash" style="color:red"></i>Delete</a></td>
     </tr>
