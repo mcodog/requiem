@@ -10,10 +10,10 @@
             <a class="nav-link" aria-current="page" href="{{ url('/') }}">Dashboard</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ url('/') }}">Analytics</a>
+            <a class="nav-link disabled" aria-current="page" href="{{ url('/') }}">Analytics</a>
             </li>
             <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="{{ url('/') }}">Inventory</a>
+            <a class="nav-link disabled" aria-current="page" href="{{ url('/') }}">Inventory</a>
             </li>
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
@@ -44,6 +44,9 @@
             </li>
         </ul>
         </div>
+        <form class="d-flex">
+            <button class="btn btn-outline-light" type="submit">Sign In</button>
+        </form>
     </div>
     </nav>
 

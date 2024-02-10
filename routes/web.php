@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [MainController::class, 'index']);
 
 Route::prefix('products')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('products.index');
@@ -57,3 +57,6 @@ Route::prefix('branch')->group(function () {
     Route::post('/{id}/update', [BranchController::class, 'update'])->name('branch.update');
     Route::get('/{id}/delete', [BranchController::class, 'delete'])->name('branch.delete');
 });
+
+Route::get('/signin', [AuthController::class, 'show']);
+Route::post('/login', [AuthController::class, 'login']);
