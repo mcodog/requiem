@@ -34,4 +34,33 @@ class BranchController extends Controller
 
         return Redirect::to('branch');
     }
+
+    public function edit($id)
+    {
+        $branch = Branch::find($id);
+        $head = Employee::where('id', $branch->branch_head)->first();
+        $employeeList = Employee::all();
+
+        return View::make('branches.edit', compact('branch', 'head', 'employeeList'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $location = $request->location;
+        $head = $request->head;
+
+        $branch = Branch::find($id);
+        $branch->location = $location;
+        $branch->branch_head = $head;
+
+        $branch->save();
+        return Redirect::to('branch');
+    }
+
+    public function delete($id) 
+    {
+        Branch::destroy($id);
+        return Redirect::to('branch');
+    }
 }
