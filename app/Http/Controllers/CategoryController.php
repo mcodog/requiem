@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 use View;
 use Redirect;
 use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
 
 class CategoryController extends Controller
 {
     public function index()
     {
         $categories = Category::all();
+        // $user = Auth::user();
         return View::make('category.index', compact('categories'));
     }
 

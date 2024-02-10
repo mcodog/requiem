@@ -44,8 +44,25 @@
             </li>
         </ul>
         </div>
-        <form class="d-flex">
-            <button class="btn btn-outline-light" type="submit">Sign In</button>
+            <?php
+                $user = Auth::user();
+                $current_user = $user->name;
+
+                echo "<div class='dropdown'>
+                <button class='btn border-0 btn-outline-light dropdown-toggle d-flex justify-content-center align-items-center ' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                <div class='container p-2' style='height:50px;width:50px;'>
+						<img src=" . URL::asset('icon/user.png') . " style='object-fit:contain;overflow:hidden;height:100%;width:100%;' alt='logo'>
+					</div>
+                  
+                </button>
+                <div class='dropdown-menu dropdown-menu-right' aria-labelledby='dropdownMenuButton'>
+                
+                  <h6 class='dropdown-header'>" . $current_user ."</h6>
+                  <a class='dropdown-item disabled' href='#')'>Account Settings</a>
+                  <a class='dropdown-item' href='/logout')'>Log Out</a>
+                </div>
+              </div>";
+            ?>
         </form>
     </div>
     </nav>
