@@ -14,7 +14,7 @@ class BranchController extends Controller
     public function index() {
         $branch = DB::table('branch')
             ->join('employee', 'employee.id', '=', 'branch.branch_head')
-            ->select('branch.id', 'branch.location', 'employee.fname', 'employee.lname', 'employee.position')
+            ->select('branch.id', 'branch.location', 'employee.fname', 'employee.lname', 'employee.position', 'branch.img_path')
             ->get();
         // dd($products);
         return View::make('branches.index', compact('branch'));
@@ -30,6 +30,12 @@ class BranchController extends Controller
         $branch = new Branch();
         $branch->location = $request->location;
         $branch->branch_head = $request->head;
+
+        if($request->has('image')) {
+            $temp = request()->file('image')->store('branch', 'public');
+            $branch->img_path = $temp;
+        }
+
         $branch->save();
 
         return Redirect::to('branch');

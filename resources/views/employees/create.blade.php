@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-lg m-5 p-3 d-flex justify-content-center flex-column align-items-md-center bg-light">
     <h4 class="p-2">You are in the Employees Page</h4>
-    <form action="{{url('/employees/store')}}" method="POST">
+    <form enctype="multipart/form-data" action="{{url('/employees/store')}}" method="POST">
         @csrf
         <label for="lname">Last Name</label>
         <input type="text" name="lname">
@@ -43,6 +43,8 @@
                 <option value="{{ $branch->id }}">{{ $branch->location }}</option>
             @endforeach
             </select> <br>
+
+        <input type="file" name="image"> <br>
 
         <input class="btn btn-primary" type="submit">
     </form>

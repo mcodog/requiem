@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#1c0f4d;">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('/') }}">Requiem</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,7 +49,7 @@
                 $current_user = $user->name;
 
                 echo "<div class='dropdown'>
-                <button class='btn border-0 btn-outline-light dropdown-toggle d-flex justify-content-center align-items-center ' type='button' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'>
+                <button class='btn border-0 btn-outline-light dropdown-toggle d-flex justify-content-center align-items-center ' type='button' id='dropdownMenuButton' data-toggle='dropdown' data-bs-auto-close='outside' aria-haspopup='true' aria-expanded='false'>
                 <div class='container p-2' style='height:50px;width:50px;'>
 						<img src=" . URL::asset('icon/user.png') . " style='object-fit:contain;overflow:hidden;height:100%;width:100%;' alt='logo'>
 					</div>

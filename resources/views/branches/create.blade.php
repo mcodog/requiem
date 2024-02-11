@@ -3,7 +3,7 @@
 @section('content')
 <div class="container-lg m-5 p-3 d-flex justify-content-center flex-column align-items-md-center bg-light">
     <h4 class="p-2">You are in the Branch Page</h4>
-    <form action="{{url('/branch/store')}}" method="POST">
+    <form enctype="multipart/form-data" action="{{url('/branch/store')}}" method="POST">
         @csrf
         <label for="categoryId">Branch Head</label>
             <label for="artists" class="form-label">Pick An Branch Head</label>
@@ -16,6 +16,7 @@
                 </select> <br>
         <label for="description">Location</label>
         <input type="text" name="location"> <br>
+        <input type="file" name="image"> <br>
         <input class="btn btn-primary" type="submit">
     </form>
 </div>

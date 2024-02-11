@@ -18,7 +18,7 @@ class EmployeeController extends Controller
             ->join('employee_class', 'employee_class.id', '=', 'employee.class_id')
             ->join('employee_status', 'employee_status.id', '=', 'employee.status_id')
             ->leftjoin('branch', 'branch.id', '=', 'employee.branch')
-            ->select('employee.id', 'employee.lname', 'employee.fname', 'employee_status.description as status', 'employee_class.description as class', 'employee.position', 'branch.location')
+            ->select('employee.id', 'employee.lname', 'employee.fname', 'employee_status.description as status', 'employee_class.description as class', 'employee.position', 'branch.location', 'employee.img_path')
             ->get();
         // dd($products);
         return View::make('employees.index', compact('employees'));
@@ -49,6 +49,11 @@ class EmployeeController extends Controller
         $employee->class_id = $empClass;
         $employee->status_id = $empStatus;
         $employee->branch = $request->branch;
+
+        if($request->has('image')) {
+            $temp = request()->file('image')->store('employee', 'public');
+            $employee->img_path = $temp;
+        }
         
         $employee->save();
         return Redirect::to('employees');

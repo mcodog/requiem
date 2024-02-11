@@ -27,6 +27,12 @@ class CategoryController extends Controller
         $desc = $request->desc;
         $dsa = new Category();
         $dsa->description = $desc;
+
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store('category', 'public');
+            $dsa->img_path = $imagePath;
+        }
+        
         $dsa->save();
         return Redirect::to('category');
     }
@@ -38,7 +44,6 @@ class CategoryController extends Controller
     }
 
     public function update(Request $request, $id)
-   
     {
         $category = Category::find($id);
         $category->description = $request->description;

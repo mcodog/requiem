@@ -16,10 +16,9 @@ class ProductController extends Controller
         // $products = Product::all();
         $products = DB::table('product')
             ->join('category', 'category.id', '=', 'product.category_id')
-            ->select('product.id', 'category.description as category_desc', 'product.description as product_name', 'product.price')
+            ->select('product.id', 'category.description as category_desc', 'product.description as product_name', 'product.price', 'product.img_path')
             ->orderBy('product.id', 'ASC')
             ->get();
-        // dd($products);
         return View::make('products.index', compact('products'));
     }
 
@@ -38,6 +37,11 @@ class ProductController extends Controller
         $product->description = $description;
         $product->category_id = $category_id;
         $product->price = $price;
+
+        if(request()->has('image')){
+            $imagePath = request()->file('image')->store('product', 'public');
+            $product->img_path = $imagePath;
+        }
         
         $product->save();
         return Redirect::to('products');
