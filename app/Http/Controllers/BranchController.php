@@ -6,6 +6,7 @@ use App\Models\Branch;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Employee;
+use App\Http\Requests\StoreBranchRequest;
 use View;
 use Redirect;
 
@@ -25,11 +26,13 @@ class BranchController extends Controller
         return View::make('branches.create', compact('head'));
     }
 
-    public function store(Request $request)
+    public function store(StoreBranchRequest $request)
     {
+        $data = $request->validated();
+
         $branch = new Branch();
-        $branch->location = $request->location;
-        $branch->branch_head = $request->head;
+        $branch->location = $data['location'];
+        $branch->branch_head = $data['head'];
 
         if($request->has('image')) {
             $temp = request()->file('image')->store('branch', 'public');

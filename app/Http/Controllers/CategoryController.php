@@ -7,6 +7,7 @@ use View;
 use Redirect;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\StoreCategoryRequest;
 
 class CategoryController extends Controller
 {
@@ -22,15 +23,20 @@ class CategoryController extends Controller
         return View::make('category.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreCategoryRequest $request)
     {
-        $desc = $request->desc;
+        // dump($request->image);
+        $try = $request->validated();
+        // dump($try['desc']);
+        // dump($try['image']);
+        // dump($try->image);
+        $desc = $try['desc'];
         $dsa = new Category();
         $dsa->description = $desc;
 
         if(request()->has('image')){
-            $imagePath = request()->file('image')->store('category', 'public');
-            $dsa->img_path = $imagePath;
+            // $imagePath = request()->file('image')->store('category', 'public');
+            $dsa->img_path = $try['image']->store('category', 'public');;
         }
         
         $dsa->save();

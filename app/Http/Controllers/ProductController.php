@@ -8,6 +8,7 @@ use Redirect;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreProductRequest;
 
 class ProductController extends Controller
 {
@@ -28,19 +29,21 @@ class ProductController extends Controller
         return View::make('products.create', compact('category'));
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $description = $request->description;
-        $price = $request->price;
-        $category_id = $request->categoryId;
+        $data = $request->validated();
+
+        $description = $data['description'];
+        $price = $data['price'];
+        $category_id = $data['categoryId'];
         $product = new Product();
         $product->description = $description;
         $product->category_id = $category_id;
         $product->price = $price;
 
         if(request()->has('image')){
-            $imagePath = request()->file('image')->store('product', 'public');
-            $product->img_path = $imagePath;
+            // $imagePath = request()->file('image')->store('product', 'public');
+            $product->img_path = $data['image']->store('product', 'public');
         }
         
         $product->save();

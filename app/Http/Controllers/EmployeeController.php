@@ -8,6 +8,7 @@ use App\Models\Branch;
 use App\Models\EmployeeClass;
 use Redirect;
 
+use App\Http\Requests\StoreEmployeeRequest;
 use Illuminate\Http\Request;
 use View;
 
@@ -31,15 +32,17 @@ class EmployeeController extends Controller
         return View::make('employees.create', compact('class', 'status', 'branch'));
     }
 
-    public function store(Request $request)
+    public function store(StoreEmployeeRequest $request)
     {
-        $lname = $request->lname;
-        $fname = $request->fname;
-        $age = $request->age;
-        $address = $request->address;
-        $position = $request->empPosition;
-        $empClass = $request->empClass;
-        $empStatus = $request->empStatus;
+        $data = $request->validated();
+
+        $lname = $data['lname'];
+        $fname = $data['fname'];
+        $age = $data['age'];
+        $address = $data['address'];
+        $position = $data['empPosition'];
+        $empClass = $data['empClass'];
+        $empStatus = $data['empStatus'];
         $employee = new Employee();
         $employee->lname = $lname;
         $employee->fname = $fname;
@@ -51,8 +54,8 @@ class EmployeeController extends Controller
         $employee->branch = $request->branch;
 
         if($request->has('image')) {
-            $temp = request()->file('image')->store('employee', 'public');
-            $employee->img_path = $temp;
+            // $temp = request()->file('image')->store('employee', 'public');
+            $employee->img_path = $data['image']->store('employee', 'public');
         }
         
         $employee->save();
