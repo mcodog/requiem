@@ -20,22 +20,19 @@
                 Products
             </a>
             <ul class="dropdown-menu">
+                <h6 class="dropdown-header">Products</h6>
                 <li><a class="dropdown-item" href="{{ url('/products/') }}">See All</a></li>
                 <li><a class="dropdown-item" href="{{ url('/products/create') }}">Create New</a></li>
-            </ul>
-            </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Product Categories
-            </a>
-            <ul class="dropdown-menu">
+                <div class="dropdown-divider"></div>
+                <h6 class="dropdown-header">Products Category</h6>
                 <li><a class="dropdown-item" href="{{ url('/category/') }}">See All</a></li>
                 <li><a class="dropdown-item" href="{{ url('/category/create') }}">Create New</a></li>
             </ul>
             </li>
+            
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                Branches and Employees
+                Workforce
             </a>
             <ul class="dropdown-menu">
                 <li><a class="dropdown-item" href="{{ url('/branch/') }}">Manage Branches</a></li>
