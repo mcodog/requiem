@@ -66,4 +66,5 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/logout', [LoginController::class, 'logout']);
 
-Route::get('/mapsapi', [ForTrialController::class, 'index']);
+Route::get('/confirm-transaction', [ForTrialController::class, 'confirm']);
+Route::get('/cart', [ForTrialController::class, 'cart']);

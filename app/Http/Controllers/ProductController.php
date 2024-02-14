@@ -5,10 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use View;
 use Redirect;
+Use File;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class ProductController extends Controller
 {
@@ -58,15 +61,32 @@ class ProductController extends Controller
         return View::make('products.edit', compact('product', 'category', 'categories'));
     }
 
-    public function update(Request $request, $id)
+    public function update(StoreProductRequest $request, $id)
     {
         // dump($request->categoryId);
         // dump($request->price);
         // dump($request->description);
+        $data = $request->validated();
+
         $product = Product::find($id);
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->category_id = $request->categoryId;
+        $product->description = $data["description"];
+        $product->price = $data['price'];
+        $product->category_id = $data['categoryId'];
+
+        if($product->img_path == null) {
+            if(request()->has('image')){
+                // $imagePath = request()->file('image')->store('product', 'public');
+                $product->img_path = $data['image']->store('product', 'public');
+            }
+        } else {
+            if(request()->has('image')){
+                $image_path = $product->img_path;
+                Storage::delete('public/'.$image_path);
+                $product->img_path = $data['image']->store('product', 'public');
+            }
+        }
+
+        
 
         $product->save();
         return Redirect::to('products');
@@ -74,6 +94,13 @@ class ProductController extends Controller
 
     public function delete($id)
     {
+        $product = Product::find($id);
+        $image_path = $product->img_path;
+
+        if ($image_path != null) {
+            Storage::delete('public/'.$image_path);
+        }
+
         Product::destroy($id);
         return Redirect::to('products');
     }

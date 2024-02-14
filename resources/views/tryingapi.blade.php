@@ -91,20 +91,29 @@
         }
 
     </script>
+    <div class="container-lg m-5 p-2 d-flex justify-content-center flex-column align-items-md-center bg-light">
+      <div class="container-sm m-5 p-2">
+          <form>
+          <div class="form-group d-flex flex-row">
+            <div class="d-flex flex-column m-2">
+              <label for="customer_location">Enter Shipment Location </label>
+              <input type="text" class="form-control" id="customer_location">
+            </div>
+            <div class="d-flex flex-column m-2">
+              <label for="near_location">Nearest Branch</label>
+              <input type="text" class="form-control" id="near_location" readonly>
+            </div>
+            <div class="d-flex flex-column m-2 justify-content-center">
+              <label for="nearest" class="text-light">.</label>
+              <input type="button" class="btn btn-primary" value="Find Nearest" id="nearest" onclick="myFunction()">
+            </div>
+          </div>
+          <div class="form-group">
 
-    <div class="container-sm m-5 p-5">
-        <form>
-        <div class="form-group">
-            <label for="customer_location">Enter your Location </label>
-            <input type="text" class="form-control" id="customer_location">
-            <input type="button" class="btn btn-primary" value="Find Nearest" id="nearest" onclick="myFunction()">
-        </div>
-        <div class="form-group">
-            <label for="near_location"></label>
-            <input type="text" class="form-control" id="near_location" readonly>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+      </div>
     </div>
     
     <script>
